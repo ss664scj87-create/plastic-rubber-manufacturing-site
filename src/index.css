@@ -496,3 +496,67 @@
 .delay-1500 {
   animation-delay: 1.5s;
 }
+
+/* Digit slot machine roll */
+@keyframes digit-roll {
+  0% {
+    transform: translateY(-300%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(8%);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-4%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes digit-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  93% {
+    opacity: 0.2;
+  }
+  94% {
+    opacity: 1;
+  }
+  97% {
+    opacity: 0.4;
+  }
+  98% {
+    opacity: 1;
+  }
+}
+
+.digit-slot {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1em;
+  height: 1em;
+}
+
+.digit-slot > span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(-300%);
+}
+
+.digit-slot.animate > span {
+  animation: digit-roll 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.digit-flicker {
+  animation: digit-flicker 4s ease-in-out infinite;
+}

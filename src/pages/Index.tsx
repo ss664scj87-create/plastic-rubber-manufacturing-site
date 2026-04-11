@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 import EngineeringDiagram from "@/components/EngineeringDiagram";
+import AnimatedNumber from "@/components/AnimatedNumber";
 
 const HERO_IMG = "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/files/4b05eb97-3337-4fdf-8bad-fc6a58eb2515.jpg";
 const BLUEPRINT_IMG = "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/files/9c35da5b-5afd-4a26-a89b-4c1d4bd6bab6.jpg";
@@ -215,7 +216,7 @@ export default function Index() {
             </div>
             <div>
               <div className="font-oswald text-lg font-semibold tracking-wider text-foreground leading-none">
-                ТБ <span className="text-orange">№2211</span>
+                ТБ <AnimatedNumber value="№2211" className="text-orange" baseDelay={0.2} />
               </div>
               <div className="tech-label" style={{ fontSize: "0.55rem" }}>технологическое бюро</div>
             </div>
@@ -331,7 +332,7 @@ export default function Index() {
               <br />
               <span className="text-orange">ЛОГИ</span>ЧЕСКОЕ
               <br />
-              БЮРО <span className="text-orange">№2211</span>
+              БЮРО <AnimatedNumber value="№2211" className="text-orange" baseDelay={0.4} />
             </h1>
 
             <p className="font-ibm text-xl text-foreground/90 mb-8 max-w-xl leading-relaxed opacity-0-init reveal delay-300">
