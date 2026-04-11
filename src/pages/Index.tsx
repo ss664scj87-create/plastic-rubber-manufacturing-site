@@ -119,8 +119,10 @@ export default function Index() {
               <div className="w-4 h-4 bg-orange diagonal-stripes" />
             </div>
             <div>
-              <div className="font-oswald text-lg font-semibold tracking-wider text-foreground leading-none">ПРОМТЕХ</div>
-              <div className="tech-label" style={{ fontSize: "0.55rem" }}>промышленное производство</div>
+              <div className="font-oswald text-lg font-semibold tracking-wider text-foreground leading-none">
+                ТБ <span className="text-orange">2211</span>
+              </div>
+              <div className="tech-label" style={{ fontSize: "0.55rem" }}>технологическое бюро</div>
             </div>
           </div>
 
@@ -183,18 +185,18 @@ export default function Index() {
 
         <div className="container relative z-10">
           <div className="max-w-3xl">
-            <div className="tech-label mb-4 opacity-0-init reveal delay-100">// REF-2024 / ПРОМЫШЛЕННОЕ ПРОИЗВОДСТВО</div>
+            <div className="tech-label mb-4 opacity-0-init reveal delay-100">// UNIT-2211 / ТЕХНОЛОГИЧЕСКОЕ БЮРО</div>
 
             <h1 className="font-oswald text-5xl md:text-7xl lg:text-8xl font-bold leading-none mb-6 opacity-0-init reveal delay-200">
-              ТОЧНОСТЬ.
+              ТЕХНО
               <br />
-              <span className="text-orange">НАДЁЖ</span>НОСТЬ.
+              <span className="text-orange">ЛОГИ</span>ЧЕСКОЕ
               <br />
-              ОПЫТ.
+              БЮРО <span className="text-orange">2211</span>
             </h1>
 
             <p className="font-ibm text-lg text-muted-foreground mb-8 max-w-xl leading-relaxed opacity-0-init reveal delay-300">
-              Производство металлоконструкций, обработка металла, нестандартное оборудование — 17 лет безупречного исполнения заказов любой сложности.
+              Инженерные решения полного цикла: от технического задания до серийного производства. Точность, закреплённая в числах — <span className="text-foreground font-normal">22</span> года опыта, <span className="text-foreground font-normal">11</span> направлений компетенций.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-12 opacity-0-init reveal delay-400">
@@ -241,11 +243,11 @@ export default function Index() {
             <div>
               <div className="tech-label mb-3 reveal opacity-0-init">// О КОМПАНИИ</div>
               <h2 className="font-oswald text-4xl md:text-5xl mb-6 reveal opacity-0-init delay-100">
-                МЫ ДЕЛАЕМ<br /><span className="text-orange">ПРОИЗВОДСТВО</span><br />ТОЧНЫМ
+                ЗА ЧИСЛАМИ —<br /><span className="text-orange">ИНЖЕНЕРНАЯ</span><br />ФИЛОСОФИЯ
               </h2>
               <div className="space-y-4 font-ibm text-muted-foreground leading-relaxed reveal opacity-0-init delay-200">
-                <p>ПромТех — современное машиностроительное предприятие полного цикла. С 2007 года мы реализуем проекты для нефтегазовой, строительной, энергетической и пищевой отраслей.</p>
-                <p>Собственный конструкторский отдел, парк высокоточного ЧПУ-оборудования и опытная производственная команда позволяют браться за задачи любой сложности — от опытного образца до серийного производства.</p>
+                <p>Технологическое бюро 2211 — это не просто название. <span className="text-foreground">22</span> — годы накопленного опыта в промышленном производстве. <span className="text-foreground">11</span> — ключевых направлений инженерных компетенций, которыми владеет наша команда.</p>
+                <p>Собственный конструкторский отдел, парк высокоточного ЧПУ-оборудования и опытная производственная команда позволяют нам браться за задачи любой сложности — от опытного образца до серийного производства.</p>
               </div>
               <div className="mt-8 space-y-3 reveal opacity-0-init delay-300">
                 {["ISO 9001:2015 сертифицированное производство", "Собственное КБ — полный проектный цикл", "Гарантия на изделия до 5 лет", "Поставки по всей России и СНГ"].map((item, i) => (
@@ -267,8 +269,8 @@ export default function Index() {
                 <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-orange" />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-orange text-primary-foreground p-6 w-48">
-                <div className="font-oswald text-4xl font-bold">17</div>
-                <div className="font-ibm text-xs mt-1 font-light">лет безупречной<br />работы на рынке</div>
+                <div className="font-oswald text-4xl font-bold">2211</div>
+                <div className="font-ibm text-xs mt-1 font-light">технологическое<br />бюро</div>
               </div>
             </div>
           </div>
@@ -643,7 +645,7 @@ export default function Index() {
             {[
               { icon: "MapPin", label: "Адрес", val: "г. Москва, ул. Промышленная, 42, стр. 1" },
               { icon: "Phone", label: "Телефон", val: "+7 (495) 000-00-00" },
-              { icon: "Mail", label: "Email", val: "info@promteh.ru" },
+              { icon: "Mail", label: "Email", val: "info@tb2211.ru" },
               { icon: "Clock", label: "Режим работы", val: "Пн–Пт: 8:00–18:00\nСб: 9:00–14:00" },
             ].map((item, i) => (
               <div key={i} className="border border-border bg-card p-6 card-hover reveal opacity-0-init" style={{ animationDelay: `${i * 0.1}s` }}>
@@ -677,8 +679,8 @@ export default function Index() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="w-6 h-6 bg-orange diagonal-stripes" />
-              <span className="font-oswald tracking-wider">ПРОМТЕХ</span>
-              <span className="text-muted-foreground font-ibm text-xs">© 2007–2024</span>
+              <span className="font-oswald tracking-wider">ТБ <span className="text-orange">2211</span></span>
+              <span className="text-muted-foreground font-ibm text-xs">© 2002–2024</span>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
               {NAV_ITEMS.map(({ label, href }) => (
