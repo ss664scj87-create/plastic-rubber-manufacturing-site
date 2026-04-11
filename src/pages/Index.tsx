@@ -99,8 +99,12 @@ export default function Index() {
   const [formSent, setFormSent] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const [counters, setCounters] = useState<number[]>(STATS.map(() => 0));
+  const [countersStarted, setCountersStarted] = useState(false);
+  const [typedText, setTypedText] = useState("");
   const heroRef = useRef<HTMLElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -131,6 +135,42 @@ export default function Index() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const targets = STATS.map((s) => parseInt(s.num.replace(/\D/g, "")) || 0);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !countersStarted) {
+          setCountersStarted(true);
+          const duration = 1600;
+          const steps = 60;
+          const interval = duration / steps;
+          let step = 0;
+          const timer = setInterval(() => {
+            step++;
+            const progress = step / steps;
+            const ease = 1 - Math.pow(1 - progress, 3);
+            setCounters(targets.map((t) => Math.round(t * ease)));
+            if (step >= steps) clearInterval(timer);
+          }, interval);
+        }
+      },
+      { threshold: 0.4 }
+    );
+    if (statsRef.current) observer.observe(statsRef.current);
+    return () => observer.disconnect();
+  }, [countersStarted]);
+
+  useEffect(() => {
+    const phrase = "UNIT-2211 / ТЕХНОЛОГИЧЕСКОЕ БЮРО";
+    let i = 0;
+    const timer = setInterval(() => {
+      i++;
+      setTypedText(phrase.slice(0, i));
+      if (i >= phrase.length) clearInterval(timer);
+    }, 50);
+    return () => clearInterval(timer);
   }, []);
 
   const scrollTo = (href: string) => {
@@ -242,9 +282,48 @@ export default function Index() {
 
         <div className="absolute left-[52%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-orange/20 to-transparent hidden lg:block" />
 
+        {/* HUD: scanning line */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block">
+          <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange/30 to-transparent animate-scan-h" style={{ animationDuration: "7s" }} />
+        </div>
+
+        {/* HUD: right side telemetry */}
+        <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-3 text-right pointer-events-none">
+          {["LAT: 55.7558° N", "LON: 37.6173° E", "ALT: 156 m", "SYS: ONLINE", "PWR: 100%"].map((line, i) => (
+            <div
+              key={i}
+              className="font-mono text-[10px] text-orange/50 opacity-0-init reveal"
+              style={{ animationDelay: `${1 + i * 0.2}s` }}
+            >
+              {line}
+            </div>
+          ))}
+          <div className="mt-2 flex flex-col items-end gap-1">
+            {[80, 95, 60].map((w, i) => (
+              <div key={i} className="h-px bg-orange/20 w-16 relative overflow-hidden">
+                <div
+                  className="absolute left-0 top-0 h-full bg-orange/60 animate-bar-fill"
+                  style={{ "--fill-width": `${w}%`, animationDelay: `${1.5 + i * 0.3}s` } as React.CSSProperties}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* HUD: bottom-left coordinates */}
+        <div className="absolute bottom-20 left-6 hidden lg:block pointer-events-none">
+          <div className="font-mono text-[9px] text-orange/40 leading-5">
+            <div className="opacity-0-init reveal delay-700">X: 000.00 mm</div>
+            <div className="opacity-0-init reveal delay-800">Y: 000.00 mm</div>
+            <div className="opacity-0-init reveal delay-900">Z: 000.00 mm</div>
+          </div>
+        </div>
+
         <div className="container relative z-10">
           <div className="max-w-3xl">
-            <div className="tech-label mb-4 opacity-0-init reveal delay-100">// UNIT-2211 / ТЕХНОЛОГИЧЕСКОЕ БЮРО</div>
+            <div className="tech-label mb-4 opacity-0-init reveal delay-100">
+              // <span>{typedText}</span><span className="cursor-pulse inline-block w-[2px] h-[0.7em] bg-orange ml-0.5 align-middle" />
+            </div>
 
             <h1 className="font-oswald text-5xl md:text-7xl lg:text-8xl font-bold leading-none mb-6 opacity-0-init reveal delay-200">
               ТЕХНО
@@ -310,18 +389,23 @@ export default function Index() {
             <div className="flex flex-wrap gap-4 mb-12 opacity-0-init reveal delay-450">
               <button
                 onClick={() => scrollTo("#calculator")}
-                className="flex items-center gap-2 border border-border px-6 py-3 font-oswald text-sm tracking-wider hover:border-orange hover:text-orange transition-all hover:gap-3"
+                className="relative flex items-center gap-2 border border-border px-6 py-3 font-oswald text-sm tracking-wider hover:border-orange hover:text-orange transition-all hover:gap-3 group"
               >
+                <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                  <span className="animate-radar-ping absolute inline-flex h-full w-full rounded-full bg-orange opacity-40" />
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-orange" />
+                </span>
                 <Icon name="Calculator" size={16} />
                 РАССЧИТАТЬ СТОИМОСТЬ
               </button>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 opacity-0-init reveal delay-500">
+            <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 opacity-0-init reveal delay-500">
               {STATS.map((s, i) => (
-                <div key={i} className="border border-border bg-card/60 backdrop-blur p-4">
-                  <div className="font-oswald text-3xl font-bold text-orange leading-none">
-                    {s.num}<span className="text-xl">{s.suffix}</span>
+                <div key={i} className="border border-border bg-card/60 backdrop-blur p-4 hud-corner relative overflow-hidden">
+                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-orange/0 via-orange/40 to-orange/0" />
+                  <div className="font-oswald text-3xl font-bold text-orange leading-none odometer">
+                    {counters[i]}{s.suffix && <span className="text-xl">{s.suffix}</span>}
                   </div>
                   <div className="tech-label mt-1">{s.label}</div>
                 </div>

@@ -264,3 +264,235 @@
 .opacity-0-init {
   opacity: 0;
 }
+
+/* === ENGINEERING ANIMATIONS === */
+
+/* Horizontal scan line sweeping across the hero */
+@keyframes scan-h {
+  0% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Rotating crosshair */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Draw SVG path */
+@keyframes draw-path {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Floating vertical data stream */
+@keyframes data-stream {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Radar ping */
+@keyframes radar-ping {
+  0% {
+    transform: scale(0.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* Glitch flicker */
+@keyframes glitch {
+  0%,
+  100% {
+    clip-path: inset(0 0 100% 0);
+    transform: translateX(0);
+  }
+  20% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translateX(-4px);
+  }
+  40% {
+    clip-path: inset(40% 0 30% 0);
+    transform: translateX(4px);
+  }
+  60% {
+    clip-path: inset(70% 0 10% 0);
+    transform: translateX(-2px);
+  }
+  80% {
+    clip-path: inset(90% 0 5% 0);
+    transform: translateX(2px);
+  }
+}
+
+/* Progress bar fill */
+@keyframes bar-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--fill-width, 100%);
+  }
+}
+
+/* Typewriter cursor pulse */
+@keyframes cursor-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  49% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 0;
+  }
+}
+
+/* Dash march — animated dashed border */
+@keyframes dash-march {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+.animate-scan-h {
+  animation: scan-h 6s linear infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+.animate-radar-ping {
+  animation: radar-ping 2s ease-out infinite;
+}
+
+.animate-data-stream {
+  animation: data-stream 8s linear infinite;
+}
+
+.animate-bar-fill {
+  animation: bar-fill 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.cursor-pulse {
+  animation: cursor-pulse 1.2s step-end infinite;
+}
+
+/* Marching dashed SVG border */
+.dash-march {
+  stroke-dasharray: 10 6;
+  animation: dash-march 0.6s linear infinite;
+}
+
+/* Glowing orange dot */
+.glow-dot {
+  width: 6px;
+  height: 6px;
+  background: hsl(var(--orange));
+  border-radius: 50%;
+  box-shadow: 0 0 6px 2px hsla(var(--orange) / 0.6);
+  animation: pulse-orange 2s ease-in-out infinite;
+}
+
+/* Animated grid lines that draw in */
+.grid-line-h {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--orange) / 0.4),
+    transparent
+  );
+  animation: bar-fill 1.2s ease forwards;
+  width: 0;
+}
+
+.grid-line-v {
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    hsl(var(--orange) / 0.4),
+    transparent
+  );
+  animation: drawLine 1.2s ease forwards;
+}
+
+/* HUD corner bracket */
+.hud-corner {
+  position: relative;
+}
+.hud-corner::before,
+.hud-corner::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: hsl(var(--orange) / 0.7);
+  border-style: solid;
+  transition: all 0.3s ease;
+}
+.hud-corner::before {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+}
+.hud-corner::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0;
+}
+
+/* Number counter odometer effect */
+.odometer {
+  font-family: "IBM Plex Mono", monospace;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.delay-900 {
+  animation-delay: 0.9s;
+}
+.delay-1000 {
+  animation-delay: 1s;
+}
+.delay-1200 {
+  animation-delay: 1.2s;
+}
+.delay-1500 {
+  animation-delay: 1.5s;
+}
