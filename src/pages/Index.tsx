@@ -12,17 +12,14 @@ const NAV_ITEMS = [
   { label: "Технологии", href: "#technologies" },
   { label: "Производство", href: "#production" },
   { label: "Портфолио", href: "#portfolio" },
-  { label: "Галерея", href: "#gallery" },
   { label: "Контакты", href: "#contacts" },
 ];
 
 const SERVICES = [
   { icon: "Settings2", num: "01", title: "Металлообработка", desc: "Токарные, фрезерные и шлифовальные работы с точностью до 0.01 мм. Любые партии от единичных изделий." },
-  { icon: "Layers", num: "02", title: "Сварочные работы", desc: "МИГ/МАГ, ТИГ, плазменная и электродуговая сварка. Конструкции из чёрного и нержавеющего металла." },
-  { icon: "Ruler", num: "03", title: "Металлоконструкции", desc: "Проектирование и производство несущих конструкций, ферм, балок, каркасов зданий." },
-  { icon: "Cpu", num: "04", title: "ЧПУ-обработка", desc: "5-осевые обрабатывающие центры, лазерная резка, листовой металл любой конфигурации." },
-  { icon: "Package", num: "05", title: "Нестандартное оборудование", desc: "Разработка и изготовление промышленных механизмов, конвейеров, трубопроводов под заказ." },
-  { icon: "Shield", num: "06", title: "Антикоррозийная защита", desc: "Пескоструйная обработка, порошковая покраска, горячее цинкование для максимального срока службы." },
+  { icon: "Cpu", num: "02", title: "ЧПУ-обработка", desc: "5-осевые обрабатывающие центры, лазерная резка, листовой металл любой конфигурации." },
+  { icon: "Package", num: "03", title: "Нестандартное оборудование", desc: "Разработка и изготовление промышленных механизмов, конвейеров, трубопроводов под заказ." },
+  { icon: "Shield", num: "04", title: "Антикоррозийная защита", desc: "Пескоструйная обработка, порошковая покраска, горячее цинкование для максимального срока службы." },
 ];
 
 const TECHNOLOGIES = [
@@ -42,15 +39,13 @@ const STATS = [
 ];
 
 const PORTFOLIO = [
-  { title: "Каркас промышленного цеха", category: "Металлоконструкции", year: "2024", img: HERO_IMG },
-  { title: "Конвейерная линия", category: "Нестандартное оборудование", year: "2024", img: WELDING_IMG },
-  { title: "Резервуар 500 м³", category: "Сварочные работы", year: "2023", img: BLUEPRINT_IMG },
-  { title: "Опорные фермы моста", category: "Металлоконструкции", year: "2023", img: HERO_IMG },
-  { title: "Трубопроводная обвязка", category: "Монтаж", year: "2023", img: WELDING_IMG },
+  { title: "Конвейерная линия", category: "Нестандартное оборудование", year: "2024", img: HERO_IMG },
+  { title: "Резервуар 500 м³", category: "Антикоррозийная защита", year: "2023", img: BLUEPRINT_IMG },
+  { title: "Трубопроводная обвязка", category: "Монтаж", year: "2023", img: HERO_IMG },
   { title: "Вентиляционный агрегат", category: "ЧПУ-обработка", year: "2022", img: BLUEPRINT_IMG },
+  { title: "Промышленный пресс", category: "Металлообработка", year: "2022", img: HERO_IMG },
+  { title: "Редуктор нестандартный", category: "Нестандартное оборудование", year: "2021", img: BLUEPRINT_IMG },
 ];
-
-const GALLERY = [HERO_IMG, WELDING_IMG, BLUEPRINT_IMG, HERO_IMG, WELDING_IMG, BLUEPRINT_IMG];
 
 export default function Index() {
   const [activeNav, setActiveNav] = useState("hero");
@@ -246,11 +241,11 @@ export default function Index() {
             <div>
               <div className="tech-label mb-3 reveal opacity-0-init">// О КОМПАНИИ</div>
               <h2 className="font-oswald text-4xl md:text-5xl mb-6 reveal opacity-0-init delay-100">
-                МЫ ДЕЛАЕМ<br /><span className="text-orange">МЕТАЛЛ РАБОТАТЬ</span>
+                МЫ ДЕЛАЕМ<br /><span className="text-orange">ПРОИЗВОДСТВО</span><br />ТОЧНЫМ
               </h2>
               <div className="space-y-4 font-ibm text-muted-foreground leading-relaxed reveal opacity-0-init delay-200">
                 <p>ПромТех — современное машиностроительное предприятие полного цикла. С 2007 года мы реализуем проекты для нефтегазовой, строительной, энергетической и пищевой отраслей.</p>
-                <p>Собственный конструкторский отдел, парк высокоточного оборудования и опытная производственная команда позволяют нам браться за задачи любой сложности — от опытного образца до серийного производства.</p>
+                <p>Собственный конструкторский отдел, парк высокоточного ЧПУ-оборудования и опытная производственная команда позволяют браться за задачи любой сложности — от опытного образца до серийного производства.</p>
               </div>
               <div className="mt-8 space-y-3 reveal opacity-0-init delay-300">
                 {["ISO 9001:2015 сертифицированное производство", "Собственное КБ — полный проектный цикл", "Гарантия на изделия до 5 лет", "Поставки по всей России и СНГ"].map((item, i) => (
@@ -293,7 +288,7 @@ export default function Index() {
             <div className="hidden lg:block font-mono text-muted-foreground/30 text-xs text-right reveal opacity-0-init delay-200">
               SERVICES_LIST<br />
               VERSION: 2024.1<br />
-              COUNT: 06
+              COUNT: 04
             </div>
           </div>
 
@@ -452,40 +447,6 @@ export default function Index() {
                 </div>
                 <div className="absolute top-3 left-3 w-6 h-6 border-t border-l border-orange/0 group-hover:border-orange/60 transition-colors duration-300" />
                 <div className="absolute bottom-3 right-3 w-6 h-6 border-b border-r border-orange/0 group-hover:border-orange/60 transition-colors duration-300" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* GALLERY */}
-      <section id="gallery" className="py-24 relative">
-        <div className="container relative z-10">
-          <div className="tech-label mb-3 reveal opacity-0-init">// ГАЛЕРЕЯ</div>
-          <h2 className="font-oswald text-4xl md:text-5xl mb-12 reveal opacity-0-init delay-100">
-            НАШ<br /><span className="text-orange">ЦЕХ</span>
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-            {GALLERY.map((img, i) => (
-              <div
-                key={i}
-                className={`overflow-hidden cursor-pointer group reveal opacity-0-init ${i === 0 ? "md:row-span-2" : ""}`}
-                style={{ animationDelay: `${i * 0.08}s` }}
-                onClick={() => setLightbox(img)}
-              >
-                <div className={`${i === 0 ? "h-full min-h-[300px]" : "aspect-[4/3]"} relative overflow-hidden`}>
-                  <img
-                    src={img}
-                    alt={`Галерея ${i + 1}`}
-                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-75"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-10 h-10 border-2 border-white flex items-center justify-center">
-                      <Icon name="Plus" size={18} className="text-white" />
-                    </div>
-                  </div>
-                </div>
               </div>
             ))}
           </div>
