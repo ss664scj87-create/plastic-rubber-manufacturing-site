@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
+import EngineeringDiagram from "@/components/EngineeringDiagram";
 
 const HERO_IMG = "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/files/4b05eb97-3337-4fdf-8bad-fc6a58eb2515.jpg";
 const BLUEPRINT_IMG = "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/files/9c35da5b-5afd-4a26-a89b-4c1d4bd6bab6.jpg";
@@ -570,6 +571,18 @@ export default function Index() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Engineering Diagram */}
+          <div className="mt-16 border border-border bg-background/60 backdrop-blur reveal opacity-0-init delay-300">
+            <div className="flex items-center gap-3 px-5 py-3 border-b border-border">
+              <div className="glow-dot" />
+              <span className="tech-label">// СХЕМА ПРОИЗВОДСТВЕННОГО ЦИКЛА</span>
+              <span className="ml-auto font-mono text-[9px] text-muted-foreground">SYS: ACTIVE</span>
+            </div>
+            <div className="p-4">
+              <EngineeringDiagram />
             </div>
           </div>
         </div>
