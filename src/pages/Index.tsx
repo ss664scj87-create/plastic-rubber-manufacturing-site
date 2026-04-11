@@ -79,12 +79,11 @@ const STATS = [
 ];
 
 const PORTFOLIO = [
-  { title: "Силиконовые уплотнители", category: "Литьё в силиконовые формы", year: "2024", img: RUBBER_PARTS_IMG },
-  { title: "Прессформа для крышки", category: "Изготовление прессформ", year: "2023", img: BLUEPRINT_IMG },
-  { title: "Полиуретановые ролики", category: "Литьё полиуретана", year: "2023", img: CASTING_IMG },
-  { title: "Прототип корпуса", category: "3D-печать", year: "2022", img: BLUEPRINT_IMG },
-  { title: "Резиновые прокладки РТИ", category: "Вулканизация РТИ", year: "2022", img: RUBBER_PARTS_IMG },
-  { title: "Пластиковые детали серия", category: "Литьё пластмасс", year: "2021", img: CASTING_IMG },
+  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/9895f45f-c7fb-4f2b-ad15-cede58e4bd8b.png" },
+  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/6749de69-14cb-44fe-b251-1e5d1db98bd5.jpg" },
+  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/0147085a-c188-4f6e-a6b7-0876f54daa76.jpg" },
+  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/355903a1-91cd-4c9a-b0ff-823b2fa86226.jpg" },
+  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/7d6e0cfe-e8be-4a90-8c5c-31fd72efdbb6.jpg" },
 ];
 
 export default function Index() {
@@ -511,14 +510,9 @@ export default function Index() {
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={p.img}
-                    alt={p.title}
+                    alt=""
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <div className="tech-label mb-1">{p.category} · {p.year}</div>
-                  <h3 className="font-oswald text-lg text-foreground">{p.title}</h3>
                 </div>
                 <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
                   <div className="w-8 h-8 bg-orange flex items-center justify-center">
