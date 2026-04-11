@@ -37,7 +37,7 @@ const TECHNOLOGIES = [
     name: "Литьё в силиконовые формы",
     spec: "мелкосерийное производство",
     desc: "Позволяет быстро получить точные копии деталей из полиуретана, эпоксидных смол и других материалов. Идеально для опытных образцов и мелких серий — от 1 до 500 штук.",
-    img: CASTING_IMG,
+    img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/ec2e65ef-768b-4c28-912d-cc7b391e0be5.png",
   },
   {
     name: "3D-печать и сканирование",
@@ -94,7 +94,7 @@ export default function Index() {
   const [formData, setFormData] = useState({ name: "", company: "", phone: "", email: "", material: "", quantity: "", comment: "" });
   const [formSent, setFormSent] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
-  const [lightbox, setLightbox] = useState<string | null>(null);
+  const [lightbox, setLightbox] = useState<number | null>(null);
   const heroRef = useRef<HTMLElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -506,7 +506,7 @@ export default function Index() {
                 key={i}
                 className="group relative overflow-hidden cursor-pointer reveal opacity-0-init bg-card"
                 style={{ animationDelay: `${i * 0.1}s` }}
-                onClick={() => setLightbox(p.img)}
+                onClick={() => setLightbox(i)}
               >
                 <div className={`aspect-[4/3] overflow-hidden flex items-center justify-center ${p.dark ? "bg-[#111416]" : "bg-card"}`}>
                   <img
@@ -847,20 +847,45 @@ export default function Index() {
       </footer>
 
       {/* LIGHTBOX */}
-      {lightbox && (
+      {lightbox !== null && (
         <div
-          className="fixed inset-0 z-[100] bg-background/95 flex items-center justify-center p-8"
+          className="fixed inset-0 z-[100] bg-background/97 flex items-center justify-center"
           onClick={() => setLightbox(null)}
         >
-          <button className="absolute top-6 right-6 w-10 h-10 border border-border flex items-center justify-center hover:border-orange transition-colors">
+          <button
+            className="absolute top-6 right-6 w-10 h-10 border border-border flex items-center justify-center hover:border-orange transition-colors"
+            onClick={() => setLightbox(null)}
+          >
             <Icon name="X" size={18} />
           </button>
-          <img
-            src={lightbox}
-            alt="Галерея"
-            className="max-w-full max-h-full object-contain border border-border"
-            onClick={(e) => e.stopPropagation()}
-          />
+          <button
+            className="absolute left-4 md:left-8 w-12 h-12 border border-border flex items-center justify-center hover:border-orange hover:text-orange transition-colors z-10"
+            onClick={(e) => { e.stopPropagation(); setLightbox((lightbox - 1 + PORTFOLIO.length) % PORTFOLIO.length); }}
+          >
+            <Icon name="ChevronLeft" size={22} />
+          </button>
+          <div className="px-20 py-12 max-w-5xl w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={PORTFOLIO[lightbox].img}
+              alt="Галерея"
+              className="max-w-full max-h-[80vh] object-contain border border-border/40"
+            />
+          </div>
+          <button
+            className="absolute right-4 md:right-8 w-12 h-12 border border-border flex items-center justify-center hover:border-orange hover:text-orange transition-colors z-10"
+            onClick={(e) => { e.stopPropagation(); setLightbox((lightbox + 1) % PORTFOLIO.length); }}
+          >
+            <Icon name="ChevronRight" size={22} />
+          </button>
+          <div className="absolute bottom-6 flex gap-2">
+            {PORTFOLIO.map((_, i) => (
+              <button
+                key={i}
+                className={`w-2 h-2 transition-colors ${i === lightbox ? "bg-orange" : "bg-border hover:bg-steel"}`}
+                onClick={(e) => { e.stopPropagation(); setLightbox(i); }}
+              />
+            ))}
+          </div>
         </div>
       )}
     </div>
