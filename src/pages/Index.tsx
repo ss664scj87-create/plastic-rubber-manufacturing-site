@@ -457,13 +457,14 @@ export default function Index() {
                 { step: "02", title: "Проектирование и КМД", desc: "Конструкторский отдел разрабатывает рабочую документацию, 3D-модели и технологические карты. Согласование с заказчиком на каждом этапе." },
                 { step: "03", title: "Производство", desc: "Изготовление в собственных цехах с контролем качества на каждой операции. Применяем современное оборудование ведущих мировых производителей." },
                 { step: "04", title: "Контроль качества", desc: "Метрологический контроль размеров, испытания изделий, документирование результатов. Каждая партия проверяется перед отгрузкой." },
+                { step: "05", title: "Доставка по РФ и СНГ", desc: "Организуем доставку по всей России и странам СНГ — собственным транспортом или транспортными компаниями. Надёжная упаковка и сопроводительная документация." },
               ].map((item, i) => (
                 <div key={i} className="flex gap-8 md:gap-16 items-start group reveal opacity-0-init" style={{ animationDelay: `${i * 0.1}s` }}>
                   <div className="flex-shrink-0 flex flex-col items-center relative w-12">
                     <div className="w-12 h-12 border-2 border-orange bg-background flex items-center justify-center z-10 group-hover:bg-orange transition-colors">
                       <span className="font-mono text-xs text-orange group-hover:text-primary-foreground transition-colors">{item.step}</span>
                     </div>
-                    {i < 3 && <div className="w-px flex-1 bg-border min-h-12" />}
+                    {i < 4 && <div className="w-px flex-1 bg-border min-h-12" />}
                   </div>
                   <div className="pb-12 pt-2 flex-1">
                     <h3 className="font-oswald text-2xl mb-2 group-hover:text-orange transition-colors">{item.title}</h3>
