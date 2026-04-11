@@ -368,8 +368,9 @@ export default function Index() {
             </div>
 
             <div className="relative reveal opacity-0-init delay-200">
-              <div className="relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
-                <img src={RUBBER_PARTS_IMG} alt="Изделия из резины и пластмассы" className="w-full h-full object-cover" />
+              <div className="relative overflow-hidden bg-[#0d0f11] flex items-center justify-center" style={{ aspectRatio: "4/3" }}>
+                <div className="absolute inset-0 bg-blueprint-sm opacity-40" />
+                <img src="https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/656cb8ce-041c-4499-a274-bfc41d722fd6.jpg" alt="Изделия из резины и пластмассы" className="relative z-10 w-full h-full object-contain p-6 transition-transform duration-500 hover:scale-105" />
                 <div className="absolute inset-0 border border-orange/30" />
                 <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-orange" />
                 <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-orange" />
