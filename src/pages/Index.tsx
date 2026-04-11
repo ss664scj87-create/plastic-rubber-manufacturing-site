@@ -43,7 +43,7 @@ const TECHNOLOGIES = [
     name: "3D-печать и сканирование",
     spec: "FDM, SLA, SLS",
     desc: "Создание прототипов за 1–3 дня. 3D-сканирование позволяет точно воспроизвести любую деталь без чертежей — достаточно принести образец.",
-    img: BLUEPRINT_IMG,
+    img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/a2702d2e-c61b-4005-9e45-47f7650a3fda.jpg",
   },
   {
     name: "Вулканизация РТИ",
