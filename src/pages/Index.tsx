@@ -79,11 +79,12 @@ const STATS = [
 ];
 
 const PORTFOLIO = [
-  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/9895f45f-c7fb-4f2b-ad15-cede58e4bd8b.png" },
-  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/6749de69-14cb-44fe-b251-1e5d1db98bd5.jpg" },
-  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/0147085a-c188-4f6e-a6b7-0876f54daa76.jpg" },
-  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/355903a1-91cd-4c9a-b0ff-823b2fa86226.jpg" },
-  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/7d6e0cfe-e8be-4a90-8c5c-31fd72efdbb6.jpg" },
+  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/9895f45f-c7fb-4f2b-ad15-cede58e4bd8b.png", dark: true },
+  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/6749de69-14cb-44fe-b251-1e5d1db98bd5.jpg", dark: false },
+  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/0147085a-c188-4f6e-a6b7-0876f54daa76.jpg", dark: false },
+  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/355903a1-91cd-4c9a-b0ff-823b2fa86226.jpg", dark: true },
+  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/7d6e0cfe-e8be-4a90-8c5c-31fd72efdbb6.jpg", dark: false },
+  { img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/af03dfab-734c-42a9-a82c-c83050b486fb.jpg", dark: true },
 ];
 
 export default function Index() {
@@ -499,28 +500,33 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {PORTFOLIO.map((p, i) => (
               <div
                 key={i}
-                className="group relative overflow-hidden cursor-pointer reveal opacity-0-init"
+                className="group relative overflow-hidden cursor-pointer reveal opacity-0-init bg-card"
                 style={{ animationDelay: `${i * 0.1}s` }}
                 onClick={() => setLightbox(p.img)}
               >
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className={`aspect-[4/3] overflow-hidden flex items-center justify-center ${p.dark ? "bg-[#111416]" : "bg-card"}`}>
                   <img
                     src={p.img}
                     alt=""
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 mix-blend-normal"
+                    style={{ filter: p.dark ? "none" : "none" }}
                   />
                 </div>
-                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="w-8 h-8 bg-orange flex items-center justify-center">
-                    <Icon name="ZoomIn" size={14} className="text-primary-foreground" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 border border-orange/0 group-hover:border-orange/40 transition-colors duration-300" />
+                <div className="absolute top-0 left-0 w-8 h-px bg-orange/0 group-hover:bg-orange transition-all duration-300" />
+                <div className="absolute top-0 left-0 w-px h-8 bg-orange/0 group-hover:bg-orange transition-all duration-300" />
+                <div className="absolute bottom-0 right-0 w-8 h-px bg-orange/0 group-hover:bg-orange transition-all duration-300" />
+                <div className="absolute bottom-0 right-0 w-px h-8 bg-orange/0 group-hover:bg-orange transition-all duration-300" />
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-7 h-7 bg-orange flex items-center justify-center">
+                    <Icon name="ZoomIn" size={13} className="text-primary-foreground" />
                   </div>
                 </div>
-                <div className="absolute top-3 left-3 w-6 h-6 border-t border-l border-orange/0 group-hover:border-orange/60 transition-colors duration-300" />
-                <div className="absolute bottom-3 right-3 w-6 h-6 border-b border-r border-orange/0 group-hover:border-orange/60 transition-colors duration-300" />
               </div>
             ))}
           </div>
