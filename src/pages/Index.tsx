@@ -990,6 +990,32 @@ export default function Index() {
           </div>
         </div>
       )}
+
+      {/* FLOATING MAX BUTTON */}
+      <a
+        href={MAX_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-[90] group flex items-center gap-3 bg-background border border-orange/60 hover:border-orange pl-4 pr-5 py-3 shadow-lg hover:shadow-orange/20 transition-all duration-300 hover:-translate-y-1"
+        style={{ boxShadow: "0 0 20px rgba(245,130,32,0.15)" }}
+      >
+        {/* Radar ping */}
+        <span className="relative flex-shrink-0">
+          <span className="animate-radar-ping absolute inline-flex h-full w-full rounded-full bg-orange opacity-30" />
+          <span className="relative flex h-8 w-8 items-center justify-center bg-orange">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+              <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 7.5h-3v6h-3v-6h-3V7h9v2.5z"/>
+            </svg>
+          </span>
+        </span>
+        <div className="flex flex-col leading-tight">
+          <span className="font-oswald text-xs tracking-widest text-muted-foreground">КОНСУЛЬТАЦИЯ</span>
+          <span className="font-oswald text-sm tracking-wider text-foreground group-hover:text-orange transition-colors">ПО ИЗГОТОВЛЕНИЮ В MAX</span>
+        </div>
+        {/* Animated corner marks */}
+        <span className="absolute top-0 left-0 w-2 h-2 border-t border-l border-orange/0 group-hover:border-orange/80 transition-colors duration-300" />
+        <span className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-orange/0 group-hover:border-orange/80 transition-colors duration-300" />
+      </a>
     </div>
   );
 }
