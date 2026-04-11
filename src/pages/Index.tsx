@@ -196,7 +196,7 @@ export default function Index() {
             </h1>
 
             <p className="font-ibm text-lg text-muted-foreground mb-8 max-w-xl leading-relaxed opacity-0-init reveal delay-300">
-              Инженерные решения полного цикла: от технического задания до серийного производства. Точность, закреплённая в числах — <span className="text-foreground font-normal">22</span> года опыта, <span className="text-foreground font-normal">11</span> направлений компетенций.
+              Инженерные решения полного цикла: от технического задания до серийного производства. Изготовление любой серии — от 1 штуки. Помогаем выбрать оптимальную технологию производства под вашу задачу.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-12 opacity-0-init reveal delay-400">
@@ -206,13 +206,6 @@ export default function Index() {
               >
                 <Icon name="Calculator" size={16} />
                 РАССЧИТАТЬ СТОИМОСТЬ
-              </button>
-              <button
-                onClick={() => scrollTo("#portfolio")}
-                className="flex items-center gap-2 border border-border text-foreground px-6 py-3 font-oswald text-sm tracking-wider hover:border-orange hover:text-orange transition-all"
-              >
-                <Icon name="FolderOpen" size={16} />
-                ПОРТФОЛИО
               </button>
             </div>
 
