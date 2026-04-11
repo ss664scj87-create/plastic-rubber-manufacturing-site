@@ -11,6 +11,7 @@ const SEND_ORDER_URL = "https://functions.poehali.dev/85f005a0-449a-4c18-ab87-11
 const PHONE = "+7 (961) 800-22-11";
 const PHONE_CLEAN = "+79618002211";
 const EMAIL = "Up8002211@yandex.ru";
+const MAX_URL = "https://max.ru/u/f9LHodD0cOIIhqhIv1XvLpodjLhjyW4qJcwP5PvKvcUjnHMXcHuZNqoeYoA";
 
 const NAV_ITEMS = [
   { label: "Главная", href: "#hero" },
@@ -292,12 +293,12 @@ export default function Index() {
                 WhatsApp
               </a>
               <a
-                href={`https://vk.me/+${PHONE_CLEAN}`}
+                href={MAX_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[#0077FF] text-white px-4 py-2 font-oswald text-sm tracking-wider hover:bg-[#0060cc] transition-all"
+                className="flex items-center gap-2 bg-[#FF6B35] text-white px-4 py-2 font-oswald text-sm tracking-wider hover:bg-[#e05a28] transition-all"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1.01-1.49-1.146-1.744-1.146-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.12-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.864 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.204.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.814-.542 1.253-1.406 2.15-3.574 2.15-3.574.118-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.78 1.202 1.253.745.847 1.32 1.558 1.473 2.05.17.491-.085.745-.576.745z"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 7.5h-3v6h-3v-6h-3V7h9v2.5z"/></svg>
                 Макс
               </a>
             </div>
@@ -771,12 +772,12 @@ export default function Index() {
               Написать в WhatsApp
             </a>
             <a
-              href={`https://vk.me/+${PHONE_CLEAN}`}
+              href={MAX_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-[#0077FF] text-white px-5 py-3 font-oswald text-sm tracking-wider hover:bg-[#0060cc] transition-all"
+              className="flex items-center gap-2 bg-[#FF6B35] text-white px-5 py-3 font-oswald text-sm tracking-wider hover:bg-[#e05a28] transition-all"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1.01-1.49-1.146-1.744-1.146-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.12-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.864 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.204.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.814-.542 1.253-1.406 2.15-3.574 2.15-3.574.118-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.78 1.202 1.253.745.847 1.32 1.558 1.473 2.05.17.491-.085.745-.576.745z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 7.5h-3v6h-3v-6h-3V7h9v2.5z"/></svg>
               Написать в Макс
             </a>
           </div>
