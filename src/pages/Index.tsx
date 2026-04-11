@@ -49,25 +49,29 @@ const TECHNOLOGIES = [
     name: "Вулканизация РТИ",
     spec: "резинотехнические изделия",
     desc: "Производство уплотнителей, прокладок, манжет, муфт и других резинотехнических изделий. Работаем с любыми марками резины под конкретные условия эксплуатации.",
-    img: RUBBER_PARTS_IMG,
+    img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/0add236a-cb72-4037-abd3-d148fbc7cf84.jpg",
+    fit: "cover",
   },
   {
     name: "Литьё пластмасс под давлением",
     spec: "серийное производство",
     desc: "Изготовление пластиковых деталей на термопластавтоматах. Собственный инструментальный цех — делаем пресс-формы и сразу запускаем серию.",
-    img: CASTING_IMG,
+    img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/fafcfc17-8e14-4420-b51a-8d1570a02d9d.jpg",
+    fit: "contain",
   },
   {
     name: "Проектирование и изготовление прессформ",
     spec: "сталь, алюминий",
     desc: "Полный цикл: от разработки конструкции в CAD до изготовления и испытания пресс-формы. Собственное КБ и ЧПУ-оборудование.",
-    img: BLUEPRINT_IMG,
+    img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/c17f2117-ee68-439d-9886-1572106ec9f7.jpg",
+    fit: "contain",
   },
   {
     name: "Литьё полиуретановых изделий",
     spec: "твёрдость Shore 10A–90D",
     desc: "Колёса, ролики, буферы, накладки, прокладки из полиуретана. Стойкость к износу в 5–10 раз выше, чем у резины.",
-    img: RUBBER_PARTS_IMG,
+    img: "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/bucket/dfd2cbc5-770e-4da3-8859-07c5a2f57428.jpg",
+    fit: "contain",
   },
 ];
 
@@ -433,8 +437,8 @@ export default function Index() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {TECHNOLOGIES.map((t, i) => (
               <div key={i} className="border border-border bg-background card-hover group reveal opacity-0-init" style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className="relative overflow-hidden" style={{ aspectRatio: "16/9" }}>
-                  <img src={t.img} alt={t.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className={`relative overflow-hidden flex items-center justify-center ${'fit' in t && t.fit === 'contain' ? 'bg-[#0d0f11]' : ''}`} style={{ aspectRatio: "16/9" }}>
+                  <img src={t.img} alt={t.name} className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${'fit' in t && t.fit === 'contain' ? 'object-contain p-4' : 'object-cover'}`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                   <div className="absolute bottom-3 left-4">
                     <span className="tech-label text-orange">{t.spec}</span>
