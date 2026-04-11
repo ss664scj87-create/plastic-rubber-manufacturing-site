@@ -192,10 +192,10 @@ export default function Index() {
               <br />
               <span className="text-orange">ЛОГИ</span>ЧЕСКОЕ
               <br />
-              БЮРО <span className="text-orange">2211</span>
+              БЮРО <span className="text-orange">№2211</span>
             </h1>
 
-            <p className="font-ibm text-lg text-muted-foreground mb-8 max-w-xl leading-relaxed opacity-0-init reveal delay-300">
+            <p className="font-ibm text-xl text-foreground/90 mb-8 max-w-xl leading-relaxed opacity-0-init reveal delay-300">
               Инженерные решения полного цикла: от технического задания до серийного производства. Изготовление любой серии — от 1 штуки. Помогаем выбрать оптимальную технологию производства под вашу задачу.
             </p>
 
