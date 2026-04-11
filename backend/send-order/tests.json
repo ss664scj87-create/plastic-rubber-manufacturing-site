@@ -1,0 +1,25 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Send order",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Тест",
+        "company": "ООО Тест",
+        "phone": "+7 (961) 800-22-11",
+        "email": "test@test.ru",
+        "material": "Резина",
+        "quantity": "100 шт",
+        "comment": "Тестовая заявка"
+      },
+      "expectedStatus": 200
+    }
+  ]
+}
