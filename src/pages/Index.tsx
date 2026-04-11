@@ -636,7 +636,7 @@ export default function Index() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
             {[
-              { icon: "MapPin", label: "Адрес", val: "г. Москва, ул. Промышленная, 42, стр. 1" },
+              { icon: "MapPin", label: "Адрес", val: "г. Санкт-Петербург, ул. 1-й Верхний переулок, стр. 11" },
               { icon: "Phone", label: "Телефон", val: "+7 (495) 000-00-00" },
               { icon: "Mail", label: "Email", val: "info@tb2211.ru" },
               { icon: "Clock", label: "Режим работы", val: "Пн–Пт: 8:00–18:00\nСб: 9:00–14:00" },
