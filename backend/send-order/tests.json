@@ -11,15 +11,12 @@
       "method": "POST",
       "path": "/",
       "body": {
-        "name": "Тест",
-        "company": "ООО Тест",
-        "phone": "+7 (961) 800-22-11",
         "email": "test@test.ru",
-        "material": "Резина",
-        "quantity": "100 шт",
-        "comment": "Тестовая заявка"
+        "comment": "Тестовая заявка — нужно 100 деталей из резины"
       },
-      "expectedStatus": 200
+      "expectedStatus": 200,
+      "expectedBody": {"ok": true},
+      "bodyMatcher": "partial"
     }
   ]
 }

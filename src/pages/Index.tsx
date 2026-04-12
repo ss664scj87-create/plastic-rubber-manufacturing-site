@@ -97,7 +97,7 @@ export default function Index() {
   const [activeNav, setActiveNav] = useState("hero");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-  const [formData, setFormData] = useState({ name: "", company: "", phone: "", email: "", material: "", quantity: "", comment: "" });
+  const [formData, setFormData] = useState({ email: "", comment: "" });
   const [formSent, setFormSent] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
   const [lightbox, setLightbox] = useState<number | null>(null);
@@ -194,12 +194,19 @@ export default function Index() {
     e.preventDefault();
     setFormLoading(true);
     try {
+      let fileBase64 = null;
+      let fileName = null;
+      if (uploadedFile) {
+        const buf = await uploadedFile.arrayBuffer();
+        fileBase64 = btoa(String.fromCharCode(...new Uint8Array(buf)));
+        fileName = uploadedFile.name;
+      }
       await fetch(SEND_ORDER_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, fileBase64, fileName }),
       });
-    } catch (_e) { /* ignore network errors */ }
+    } catch (_e) { /* ignore */ }
     setFormLoading(false);
     setFormSent(true);
   };
@@ -641,84 +648,26 @@ export default function Index() {
 
             {!formSent ? (
               <form onSubmit={handleSubmit} className="space-y-4 reveal opacity-0-init delay-200">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="tech-label block mb-2">ИМЯ</label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Иван Петров"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="tech-label block mb-2">КОМПАНИЯ</label>
-                    <input
-                      type="text"
-                      placeholder="ООО «Название»"
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="tech-label block mb-2">ТЕЛЕФОН</label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="+7 (000) 000-00-00"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="tech-label block mb-2">EMAIL</label>
-                    <input
-                      type="email"
-                      placeholder="email@company.ru"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="tech-label block mb-2">МАТЕРИАЛ</label>
-                    <select
-                      value={formData.material}
-                      onChange={(e) => setFormData({ ...formData, material: e.target.value })}
-                      className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors text-foreground"
-                    >
-                      <option value="">Выберите материал</option>
-                      <option>Резина / РТИ</option>
-                      <option>Силикон</option>
-                      <option>Полиуретан</option>
-                      <option>Пластик</option>
-                      <option>Металл</option>
-                      <option>Другой материал</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="tech-label block mb-2">КОЛИЧЕСТВО</label>
-                    <input
-                      type="text"
-                      placeholder="Кол-во штук / тонн / м²"
-                      value={formData.quantity}
-                      onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
-                      className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors"
-                    />
-                  </div>
+                <div>
+                  <label className="tech-label block mb-2">EMAIL ДЛЯ ОТВЕТА</label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="email@company.ru"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors"
+                  />
                 </div>
 
                 <div>
                   <label className="tech-label block mb-2">ОПИСАНИЕ ЗАДАЧИ</label>
                   <textarea
-                    placeholder="Опишите задачу, требования, сроки..."
+                    required
+                    placeholder="Опишите задачу, требования, материал, количество, сроки..."
                     value={formData.comment}
                     onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
-                    rows={4}
+                    rows={5}
                     className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors resize-none"
                   />
                 </div>
