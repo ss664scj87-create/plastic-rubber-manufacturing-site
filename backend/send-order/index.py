@@ -11,8 +11,8 @@ from email.parser import BytesParser
 from email.policy import default
 import re
 
-TO_EMAIL = "Up8002211@yandex.ru"
-FROM_EMAIL = "Up8002211@yandex.ru"
+TO_EMAIL = "Tb-2211@yandex.ru"
+FROM_EMAIL = "Tb-2211@yandex.ru"
 
 def parse_email_content(raw_email: str):
     """Парсит входящее письмо и извлекает поля формы"""

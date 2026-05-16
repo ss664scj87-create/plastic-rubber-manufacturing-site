@@ -17,7 +17,7 @@ const SEND_ORDER_URL =
 
 const PHONE = "+7 (961) 800-22-11";
 const PHONE_CLEAN = "+79618002211";
-const EMAIL = "Up8002211@yandex.ru";
+const EMAIL = "Tb-2211@yandex.ru";
 const MAX_URL =
   "https://max.ru/u/f9LHodD0cOIIhqhIv1XvLpodjLhjyW4qJcwP5PvKvcUjnHMXcHuZNqoeYoA";
 
@@ -501,25 +501,7 @@ export default function Index() {
               </a>
             </div>
 
-            <div className="flex flex-wrap gap-4 mb-12 opacity-0-init reveal delay-450">
-              <button
-                onClick={() => scrollTo("#calculator")}
-                className="relative flex items-center gap-2 px-7 py-4 font-oswald text-base tracking-widest text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(245,130,32,0.5)] group overflow-hidden"
-                style={{
-                  background: "linear-gradient(135deg, #e85d04, #f59e0b)",
-                  boxShadow: "0 0 18px rgba(232,93,4,0.4)",
-                }}
-              >
-                <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <Icon name="Calculator" size={18} />
-                РАССЧИТАТЬ СТОИМОСТЬ
-                <Icon
-                  name="ArrowRight"
-                  size={16}
-                  className="ml-1 group-hover:translate-x-1 transition-transform duration-300"
-                />
-              </button>
-            </div>
+
 
             <div
               ref={statsRef}
@@ -866,174 +848,6 @@ export default function Index() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CALCULATOR */}
-      <section id="calculator" className="py-24 relative bg-card/50">
-        <div className="absolute inset-0 bg-blueprint" />
-        <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto">
-            <div className="tech-label mb-3 text-center reveal opacity-0-init">
-              // РАСЧЁТ СТОИМОСТИ
-            </div>
-            <h2 className="font-oswald text-4xl md:text-5xl text-center mb-3 reveal opacity-0-init delay-100">
-              КАЛЬКУЛЯТОР
-              <br />
-              <span className="text-orange">ПРОИЗВОДСТВА</span>
-            </h2>
-            <p className="font-ibm text-sm text-muted-foreground text-center mb-12 reveal opacity-0-init delay-200">
-              Заполните форму и прикрепите чертежи — мы рассчитаем стоимость в
-              течение 24 часов
-            </p>
-
-            {!formSent ? (
-              <form
-                onSubmit={handleSubmit}
-                className="space-y-4 reveal opacity-0-init delay-200"
-              >
-                <div>
-                  <label className="tech-label block mb-2">
-                    EMAIL ДЛЯ ОТВЕТА
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="email@company.ru"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="tech-label block mb-2">
-                    ОПИСАНИЕ ЗАДАЧИ
-                  </label>
-                  <textarea
-                    required
-                    placeholder="Опишите задачу, требования, материал, количество, сроки..."
-                    value={formData.comment}
-                    onChange={(e) =>
-                      setFormData({ ...formData, comment: e.target.value })
-                    }
-                    rows={5}
-                    className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors resize-none"
-                  />
-                </div>
-
-                <div>
-                  <label className="tech-label block mb-2">
-                    ЧЕРТЕЖИ / ТЕХЗАДАНИЕ
-                  </label>
-                  <div
-                    onClick={() => fileInputRef.current?.click()}
-                    onDrop={handleDrop}
-                    onDragOver={(e) => e.preventDefault()}
-                    className="border border-dashed border-border hover:border-orange transition-colors p-8 text-center cursor-pointer group"
-                  >
-                    <input
-                      ref={fileInputRef}
-                      type="file"
-                      accept=".pdf,.dwg,.dxf,.step,.stp,.igs,.jpg,.png,.zip"
-                      onChange={handleFileChange}
-                      className="hidden"
-                    />
-                    {uploadedFile ? (
-                      <div className="flex items-center justify-center gap-3">
-                        <div className="w-8 h-8 border border-orange flex items-center justify-center">
-                          <Icon
-                            name="FileCheck"
-                            size={16}
-                            className="text-orange"
-                          />
-                        </div>
-                        <div>
-                          <div className="font-ibm text-sm text-orange">
-                            {uploadedFile.name}
-                          </div>
-                          <div className="tech-label">
-                            {(uploadedFile.size / 1024 / 1024).toFixed(2)} МБ
-                          </div>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setUploadedFile(null);
-                          }}
-                          className="ml-4 text-muted-foreground hover:text-foreground"
-                        >
-                          <Icon name="X" size={14} />
-                        </button>
-                      </div>
-                    ) : (
-                      <div>
-                        <div className="w-12 h-12 border border-border group-hover:border-orange transition-colors flex items-center justify-center mx-auto mb-4">
-                          <Icon
-                            name="Upload"
-                            size={22}
-                            className="text-muted-foreground group-hover:text-orange transition-colors"
-                          />
-                        </div>
-                        <div className="font-ibm text-sm text-muted-foreground mb-2">
-                          Перетащите файл или нажмите для выбора
-                        </div>
-                        <div className="tech-label">
-                          PDF, DWG, DXF, STEP, STP, IGS, JPG, ZIP
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={formLoading}
-                  className="w-full bg-orange text-primary-foreground py-4 font-oswald text-sm tracking-widest hover:bg-orange/90 transition-all flex items-center justify-center gap-3 disabled:opacity-60"
-                >
-                  <Icon name={formLoading ? "Loader" : "Send"} size={16} />
-                  {formLoading ? "ОТПРАВЛЯЕМ..." : "ОТПРАВИТЬ ЗАПРОС НА РАСЧЁТ"}
-                </button>
-
-                <p className="font-ibm text-xs text-muted-foreground text-center">
-                  Нажимая кнопку, вы соглашаетесь с обработкой персональных
-                  данных
-                </p>
-              </form>
-            ) : (
-              <div className="text-center py-16 reveal opacity-0-init">
-                <div className="w-20 h-20 border-2 border-orange flex items-center justify-center mx-auto mb-6 pulse-orange">
-                  <Icon name="CheckCheck" size={36} className="text-orange" />
-                </div>
-                <h3 className="font-oswald text-3xl mb-3">ЗАПРОС ПРИНЯТ</h3>
-                <p className="font-ibm text-muted-foreground mb-8">
-                  Наш инженер свяжется с вами в течение 24 часов для уточнения
-                  деталей и расчёта стоимости.
-                </p>
-                <button
-                  onClick={() => {
-                    setFormSent(false);
-                    setFormData({
-                      name: "",
-                      company: "",
-                      phone: "",
-                      email: "",
-                      material: "",
-                      quantity: "",
-                      comment: "",
-                    });
-                    setUploadedFile(null);
-                  }}
-                  className="border border-border px-8 py-3 font-oswald text-sm tracking-wider hover:border-orange hover:text-orange transition-all"
-                >
-                  НОВЫЙ ЗАПРОС
-                </button>
-              </div>
-            )}
           </div>
         </div>
       </section>
