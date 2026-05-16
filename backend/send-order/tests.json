@@ -11,8 +11,9 @@
       "method": "POST",
       "path": "/",
       "body": {
-        "email": "test@test.ru",
-        "comment": "Тестовая заявка — нужно 100 деталей из резины"
+        "name": "Иван Петров",
+        "phone": "+7 999 123 45 67",
+        "comment": "Нужно 50 резиновых прокладок диаметром 40мм"
       },
       "expectedStatus": 200,
       "expectedBody": {"ok": true},
