@@ -978,85 +978,128 @@ export default function Index() {
           </div>
 
           {/* ФОРМА ЗАЯВКИ */}
-          <div className="border border-border bg-card p-8 mb-8 reveal opacity-0-init">
-            <div className="tech-label mb-3">// ОСТАВИТЬ ЗАЯВКУ</div>
-            <h3 className="font-oswald text-2xl mb-6">
-              ОТПРАВИТЬ <span className="text-orange">ЗАПРОС</span>
-            </h3>
+          <div className="relative mb-8 reveal opacity-0-init overflow-hidden">
+            {/* Оранжевая полоса слева */}
+            <div className="absolute left-0 top-0 bottom-0 w-1 bg-orange" />
 
-            {!formSent ? (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="tech-label block mb-2">ИМЯ</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Как к вам обращаться?"
-                    value={formData.name || ""}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value } as typeof formData & { name: string })
-                    }
-                    className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors"
-                  />
+            <div className="bg-card border border-border border-l-0 p-8 md:p-12">
+              {/* Заголовок */}
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-14 h-14 bg-orange flex items-center justify-center flex-shrink-0">
+                  <Icon name="ClipboardList" size={26} className="text-primary-foreground" />
                 </div>
                 <div>
-                  <label className="tech-label block mb-2">ТЕЛЕФОН</label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="+7 (___) ___-__-__"
-                    value={formData.phone || ""}
-                    onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value } as typeof formData & { phone: string })
-                    }
-                    className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors"
-                  />
+                  <div className="tech-label text-orange mb-1">// БЫСТРЫЙ РАСЧЁТ</div>
+                  <h3 className="font-oswald text-3xl md:text-4xl">
+                    ОСТАВИТЬ <span className="text-orange">ЗАЯВКУ</span>
+                  </h3>
                 </div>
-                <div>
-                  <label className="tech-label block mb-2">ОПИСАНИЕ ЗАДАЧИ</label>
-                  <textarea
-                    required
-                    placeholder="Опишите задачу, материал, количество, сроки..."
-                    value={formData.comment}
-                    onChange={(e) =>
-                      setFormData({ ...formData, comment: e.target.value })
-                    }
-                    rows={4}
-                    className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors resize-none"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={formLoading}
-                  className="w-full bg-orange text-primary-foreground py-4 font-oswald text-sm tracking-widest hover:bg-orange/90 transition-all flex items-center justify-center gap-3 disabled:opacity-60"
-                >
-                  <Icon name={formLoading ? "Loader" : "Send"} size={16} />
-                  {formLoading ? "ОТПРАВЛЯЕМ..." : "ОТПРАВИТЬ ЗАЯВКУ"}
-                </button>
-                <p className="font-ibm text-xs text-muted-foreground text-center">
-                  Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
-                </p>
-              </form>
-            ) : (
-              <div className="text-center py-10">
-                <div className="w-16 h-16 border-2 border-orange flex items-center justify-center mx-auto mb-4">
-                  <Icon name="CheckCheck" size={28} className="text-orange" />
-                </div>
-                <h3 className="font-oswald text-2xl mb-2">ЗАЯВКА ПРИНЯТА</h3>
-                <p className="font-ibm text-sm text-muted-foreground mb-6">
-                  Свяжемся с вами в течение рабочего дня
-                </p>
-                <button
-                  onClick={() => {
-                    setFormSent(false);
-                    setFormData({ email: "", comment: "" });
-                  }}
-                  className="border border-border px-6 py-2 font-oswald text-sm tracking-wider hover:border-orange hover:text-orange transition-all"
-                >
-                  НОВАЯ ЗАЯВКА
-                </button>
               </div>
-            )}
+
+              {!formSent ? (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <div className="relative">
+                      <label className="tech-label block mb-2 text-orange">ИМЯ *</label>
+                      <div className="relative">
+                        <Icon name="User" size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                        <input
+                          type="text"
+                          required
+                          placeholder="Как к вам обращаться?"
+                          value={formData.name || ""}
+                          onChange={(e) =>
+                            setFormData({ ...formData, name: e.target.value } as typeof formData & { name: string })
+                          }
+                          className="w-full bg-background border border-border pl-10 pr-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors"
+                        />
+                      </div>
+                    </div>
+                    <div className="relative">
+                      <label className="tech-label block mb-2 text-orange">ТЕЛЕФОН *</label>
+                      <div className="relative">
+                        <Icon name="Phone" size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                        <input
+                          type="tel"
+                          required
+                          placeholder="+7 (___) ___-__-__"
+                          value={formData.phone || ""}
+                          onChange={(e) =>
+                            setFormData({ ...formData, phone: e.target.value } as typeof formData & { phone: string })
+                          }
+                          className="w-full bg-background border border-border pl-10 pr-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="relative">
+                    <label className="tech-label block mb-2 text-orange">EMAIL</label>
+                    <div className="relative">
+                      <Icon name="Mail" size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                      <input
+                        type="email"
+                        placeholder="email@company.ru"
+                        value={formData.email}
+                        onChange={(e) =>
+                          setFormData({ ...formData, email: e.target.value })
+                        }
+                        className="w-full bg-background border border-border pl-10 pr-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="tech-label block mb-2 text-orange">ОПИСАНИЕ ЗАДАЧИ *</label>
+                    <textarea
+                      required
+                      placeholder="Опишите задачу, материал, количество, сроки..."
+                      value={formData.comment}
+                      onChange={(e) =>
+                        setFormData({ ...formData, comment: e.target.value })
+                      }
+                      rows={4}
+                      className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors resize-none"
+                    />
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
+                    <button
+                      type="submit"
+                      disabled={formLoading}
+                      className="relative w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-4 font-oswald text-base tracking-widest text-primary-foreground transition-all hover:scale-105 disabled:opacity-60 disabled:hover:scale-100 overflow-hidden group"
+                      style={{ background: "linear-gradient(135deg, #e85d04, #f59e0b)", boxShadow: "0 0 24px rgba(232,93,4,0.4)" }}
+                    >
+                      <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <Icon name={formLoading ? "Loader" : "Send"} size={16} />
+                      {formLoading ? "ОТПРАВЛЯЕМ..." : "ОТПРАВИТЬ ЗАЯВКУ"}
+                    </button>
+                    <p className="font-ibm text-xs text-muted-foreground">
+                      Нажимая кнопку, вы соглашаетесь с<br />обработкой персональных данных
+                    </p>
+                  </div>
+                </form>
+              ) : (
+                <div className="text-center py-10">
+                  <div className="w-20 h-20 border-2 border-orange flex items-center justify-center mx-auto mb-5 pulse-orange">
+                    <Icon name="CheckCheck" size={36} className="text-orange" />
+                  </div>
+                  <h3 className="font-oswald text-3xl mb-3">ЗАЯВКА ПРИНЯТА</h3>
+                  <p className="font-ibm text-muted-foreground mb-8">
+                    Свяжемся с вами в течение рабочего дня
+                  </p>
+                  <button
+                    onClick={() => {
+                      setFormSent(false);
+                      setFormData({ email: "", comment: "" });
+                    }}
+                    className="border border-border px-8 py-3 font-oswald text-sm tracking-wider hover:border-orange hover:text-orange transition-all"
+                  >
+                    НОВАЯ ЗАЯВКА
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="relative h-64 border border-border bg-card overflow-hidden reveal opacity-0-init">
