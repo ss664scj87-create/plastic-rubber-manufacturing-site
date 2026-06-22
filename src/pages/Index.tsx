@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 import EngineeringDiagram from "@/components/EngineeringDiagram";
 import AnimatedNumber from "@/components/AnimatedNumber";
+import { ARTICLES } from "@/data/articles";
 
 const HERO_IMG =
   "https://cdn.poehali.dev/projects/a73a8764-8411-4f05-9d1a-f8f2ffd3216b/files/4b05eb97-3337-4fdf-8bad-fc6a58eb2515.jpg";
@@ -1083,6 +1084,63 @@ export default function Index() {
                   </div>
                 )}
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* БАЗА ЗНАНИЙ */}
+      <section id="knowledge" className="py-24 relative">
+        <div className="container relative z-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+              <div className="tech-label mb-3 reveal opacity-0-init text-orange">// БАЗА ЗНАНИЙ</div>
+              <h2 className="font-oswald text-4xl md:text-5xl reveal opacity-0-init delay-100">
+                СТАТЬИ ОБ
+                <br />
+                <span className="text-orange">ТЕХНОЛОГИЯХ</span>
+              </h2>
+              <p className="font-ibm text-sm text-muted-foreground mt-3 max-w-lg reveal opacity-0-init delay-200">
+                Экспертные материалы о производстве РТИ, литье, 3D-печати и металлообработке от инженеров ТБ №2211.
+              </p>
+            </div>
+            <a
+              href="/blog"
+              className="flex-shrink-0 flex items-center gap-2 border border-border px-6 py-3 font-oswald text-sm tracking-wider hover:border-orange hover:text-orange transition-all reveal opacity-0-init"
+            >
+              ВСЕ СТАТЬИ
+              <Icon name="ArrowRight" size={14} />
+            </a>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {ARTICLES.slice(0, 6).map((article, i) => (
+              <a
+                key={article.slug}
+                href={`/blog/${article.slug}`}
+                className="group border border-border bg-card hover:border-orange/50 transition-all duration-300 flex flex-col reveal opacity-0-init"
+                style={{ animationDelay: `${i * 0.07}s` }}
+              >
+                <div className="h-0.5 bg-orange/0 group-hover:bg-orange transition-all duration-300" />
+                <div className="p-5 flex flex-col flex-1">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="font-ibm text-xs text-orange border border-orange/30 bg-orange/10 px-2 py-0.5">
+                      {article.category}
+                    </span>
+                    <div className="flex items-center gap-1 text-muted-foreground">
+                      <Icon name="Clock" size={11} />
+                      <span className="font-ibm text-xs">{article.readTime}</span>
+                    </div>
+                  </div>
+                  <h3 className="font-oswald text-base leading-snug mb-2 group-hover:text-orange transition-colors flex-1">
+                    {article.title}
+                  </h3>
+                  <div className="flex items-center gap-1 mt-3 font-ibm text-xs text-muted-foreground group-hover:text-orange transition-colors">
+                    <span>Читать</span>
+                    <Icon name="ArrowRight" size={11} className="group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </a>
             ))}
           </div>
         </div>
