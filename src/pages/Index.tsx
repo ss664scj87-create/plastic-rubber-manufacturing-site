@@ -26,8 +26,9 @@ const NAV_ITEMS = [
   { label: "О компании", href: "#about" },
   { label: "Услуги", href: "#services" },
   { label: "Технологии", href: "#technologies" },
-  { label: "Производство", href: "#production" },
   { label: "Портфолио", href: "#portfolio" },
+  { label: "Калькулятор", href: "#calculator" },
+  { label: "FAQ", href: "#faq" },
   { label: "Контакты", href: "#contacts" },
 ];
 
@@ -158,6 +159,16 @@ export default function Index() {
   const [counters, setCounters] = useState<number[]>(STATS.map(() => 0));
   const [countersStarted, setCountersStarted] = useState(false);
   const [typedText, setTypedText] = useState("");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [calc, setCalc] = useState({
+    service: "casting",
+    basePrice: 8000,
+    material: "rubber",
+    materialMult: 1.0,
+    qty: 10,
+    urgency: "normal",
+    urgencyMult: 1.0,
+  });
   const heroRef = useRef<HTMLElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
@@ -846,6 +857,231 @@ export default function Index() {
                     />
                   </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* КАЛЬКУЛЯТОР СТОИМОСТИ */}
+      <section id="calculator" className="py-24 relative">
+        <div className="container relative z-10">
+          <div className="tech-label mb-3 reveal opacity-0-init">// БЫСТРЫЙ РАСЧЁТ</div>
+          <h2 className="font-oswald text-4xl md:text-5xl mb-4 reveal opacity-0-init delay-100">
+            КАЛЬКУЛЯТОР
+            <br />
+            <span className="text-orange">СТОИМОСТИ</span>
+          </h2>
+          <p className="font-ibm text-muted-foreground mb-12 reveal opacity-0-init delay-200">
+            Получите предварительную оценку стоимости заказа. Точный расчёт — после заявки.
+          </p>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Параметры */}
+            <div className="space-y-6 reveal opacity-0-init">
+              {/* Тип услуги */}
+              <div>
+                <label className="tech-label block mb-3 text-orange">ТИП УСЛУГИ</label>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { id: "casting", label: "Литьё в силикон", base: 8000 },
+                    { id: "cnc", label: "ЧПУ-обработка", base: 5000 },
+                    { id: "print3d", label: "3D-печать", base: 3000 },
+                    { id: "vulcan", label: "Вулканизация РТИ", base: 6000 },
+                    { id: "plastic", label: "Литьё пластмасс", base: 12000 },
+                    { id: "polyurethan", label: "Полиуретан", base: 7000 },
+                  ].map((s) => (
+                    <button
+                      key={s.id}
+                      onClick={() => setCalc((c) => ({ ...c, service: s.id, basePrice: s.base }))}
+                      className={`border px-3 py-2 font-ibm text-xs text-left transition-all ${calc.service === s.id ? "border-orange text-orange bg-orange/10" : "border-border hover:border-orange/50"}`}
+                    >
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Материал */}
+              <div>
+                <label className="tech-label block mb-3 text-orange">МАТЕРИАЛ</label>
+                <div className="grid grid-cols-3 gap-2">
+                  {[
+                    { id: "rubber", label: "Резина", mult: 1.0 },
+                    { id: "silicone", label: "Силикон", mult: 1.3 },
+                    { id: "polyurethane", label: "Полиуретан", mult: 1.5 },
+                    { id: "plastic", label: "Пластик", mult: 1.1 },
+                    { id: "metal", label: "Металл", mult: 2.0 },
+                    { id: "other", label: "Другое", mult: 1.2 },
+                  ].map((m) => (
+                    <button
+                      key={m.id}
+                      onClick={() => setCalc((c) => ({ ...c, material: m.id, materialMult: m.mult }))}
+                      className={`border px-3 py-2 font-ibm text-xs transition-all ${calc.material === m.id ? "border-orange text-orange bg-orange/10" : "border-border hover:border-orange/50"}`}
+                    >
+                      {m.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Количество */}
+              <div>
+                <label className="tech-label block mb-3 text-orange">
+                  КОЛИЧЕСТВО: <span className="text-foreground">{calc.qty} шт.</span>
+                </label>
+                <input
+                  type="range"
+                  min={1}
+                  max={500}
+                  value={calc.qty}
+                  onChange={(e) => setCalc((c) => ({ ...c, qty: Number(e.target.value) }))}
+                  className="w-full accent-orange"
+                />
+                <div className="flex justify-between font-ibm text-xs text-muted-foreground mt-1">
+                  <span>1 шт.</span>
+                  <span>500 шт.</span>
+                </div>
+              </div>
+
+              {/* Срочность */}
+              <div>
+                <label className="tech-label block mb-3 text-orange">СРОЧНОСТЬ</label>
+                <div className="grid grid-cols-3 gap-2">
+                  {[
+                    { id: "normal", label: "Стандарт", sub: "10–20 дней", mult: 1.0 },
+                    { id: "fast", label: "Ускоренно", sub: "5–9 дней", mult: 1.3 },
+                    { id: "urgent", label: "Срочно", sub: "1–4 дня", mult: 1.7 },
+                  ].map((u) => (
+                    <button
+                      key={u.id}
+                      onClick={() => setCalc((c) => ({ ...c, urgency: u.id, urgencyMult: u.mult }))}
+                      className={`border px-3 py-3 font-ibm text-xs text-left transition-all ${calc.urgency === u.id ? "border-orange text-orange bg-orange/10" : "border-border hover:border-orange/50"}`}
+                    >
+                      <div className="font-medium">{u.label}</div>
+                      <div className="text-muted-foreground">{u.sub}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Результат */}
+            <div className="reveal opacity-0-init delay-200">
+              <div className="border border-orange/30 bg-card p-8 h-full flex flex-col">
+                <div className="tech-label mb-6 text-orange">// ПРЕДВАРИТЕЛЬНАЯ ОЦЕНКА</div>
+
+                <div className="flex-1 space-y-4">
+                  <div className="flex justify-between items-center py-3 border-b border-border font-ibm text-sm">
+                    <span className="text-muted-foreground">Базовая стоимость</span>
+                    <span>{calc.basePrice.toLocaleString("ru")} ₽</span>
+                  </div>
+                  <div className="flex justify-between items-center py-3 border-b border-border font-ibm text-sm">
+                    <span className="text-muted-foreground">Материал ×{calc.materialMult.toFixed(1)}</span>
+                    <span>{Math.round(calc.basePrice * calc.materialMult).toLocaleString("ru")} ₽</span>
+                  </div>
+                  <div className="flex justify-between items-center py-3 border-b border-border font-ibm text-sm">
+                    <span className="text-muted-foreground">Количество: {calc.qty} шт.</span>
+                    <span>{Math.round(calc.basePrice * calc.materialMult * (1 + (calc.qty - 1) * 0.3)).toLocaleString("ru")} ₽</span>
+                  </div>
+                  {calc.urgencyMult > 1 && (
+                    <div className="flex justify-between items-center py-3 border-b border-border font-ibm text-sm">
+                      <span className="text-muted-foreground">Срочность ×{calc.urgencyMult.toFixed(1)}</span>
+                      <span className="text-orange">+{Math.round(calc.basePrice * calc.materialMult * (1 + (calc.qty - 1) * 0.3) * (calc.urgencyMult - 1)).toLocaleString("ru")} ₽</span>
+                    </div>
+                  )}
+
+                  <div className="pt-4">
+                    <div className="font-ibm text-xs text-muted-foreground mb-2">ИТОГО ОТ</div>
+                    <div className="font-oswald text-5xl text-orange">
+                      {Math.round(calc.basePrice * calc.materialMult * (1 + (calc.qty - 1) * 0.3) * calc.urgencyMult).toLocaleString("ru")}
+                      <span className="text-3xl ml-2">₽</span>
+                    </div>
+                    <p className="font-ibm text-xs text-muted-foreground mt-3">
+                      Цена ориентировочная. Точный расчёт — после изучения чертежей и ТЗ.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-8">
+                  <a
+                    href="#contacts"
+                    className="w-full flex items-center justify-center gap-3 py-4 font-oswald text-sm tracking-widest text-primary-foreground transition-all hover:opacity-90"
+                    style={{ background: "linear-gradient(135deg, #e85d04, #f59e0b)", boxShadow: "0 0 24px rgba(232,93,4,0.35)" }}
+                  >
+                    <Icon name="Calculator" size={16} />
+                    ПОЛУЧИТЬ ТОЧНЫЙ РАСЧЁТ
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-24 relative bg-card/30">
+        <div className="absolute inset-0 bg-blueprint-sm" />
+        <div className="container relative z-10">
+          <div className="tech-label mb-3 reveal opacity-0-init">// ВОПРОСЫ И ОТВЕТЫ</div>
+          <h2 className="font-oswald text-4xl md:text-5xl mb-12 reveal opacity-0-init delay-100">
+            ЧАСТО
+            <br />
+            <span className="text-orange">СПРАШИВАЮТ</span>
+          </h2>
+
+          <div className="max-w-3xl space-y-2">
+            {[
+              {
+                q: "Какая минимальная партия для заказа?",
+                a: "Принимаем заказы от 1 штуки. Производим как единичные изделия для прототипирования, так и серийные партии до тысяч единиц.",
+              },
+              {
+                q: "Сколько времени занимает изготовление?",
+                a: "Стандартные сроки — 10–20 рабочих дней. Возможно ускоренное производство за 5–9 дней и срочное — за 1–4 дня (стоимость выше). Точные сроки зависят от сложности изделия.",
+              },
+              {
+                q: "Нужно ли предоставлять чертежи?",
+                a: "Чертежи желательны, но не обязательны. Мы работаем по эскизам, образцам и даже устному описанию. Есть 3D-сканирование для обратного инжиниринга деталей без документации.",
+              },
+              {
+                q: "Какие материалы вы используете?",
+                a: "Резина и РТИ, силикон (пищевой, медицинский, технический), полиуретан (Shore 10A–90D), пластмассы, металлы. Подберём оптимальный материал под ваши условия эксплуатации.",
+              },
+              {
+                q: "Как рассчитывается стоимость?",
+                a: "Цена зависит от типа услуги, материала, количества изделий и сроков. Используйте наш калькулятор для предварительной оценки, а точный расчёт — после изучения чертежей.",
+              },
+              {
+                q: "Вы работаете с юридическими лицами?",
+                a: "Да, работаем как с физическими, так и с юридическими лицами. Предоставляем все закрывающие документы: счёт, договор, акты. Работаем с НДС и без.",
+              },
+              {
+                q: "Есть ли доставка по России?",
+                a: "Да, отправляем заказы по всей России транспортными компаниями (СДЭК, Деловые линии и др.). Крупные партии — грузовыми перевозчиками.",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="border border-border bg-card reveal opacity-0-init"
+                style={{ animationDelay: `${i * 0.07}s` }}
+              >
+                <button
+                  className="w-full flex items-center justify-between px-6 py-5 text-left gap-4 group"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                >
+                  <span className="font-oswald text-lg group-hover:text-orange transition-colors">{item.q}</span>
+                  <Icon
+                    name={openFaq === i ? "ChevronUp" : "ChevronDown"}
+                    size={18}
+                    className="flex-shrink-0 text-orange"
+                  />
+                </button>
+                {openFaq === i && (
+                  <div className="px-6 pb-5 font-ibm text-sm text-muted-foreground leading-relaxed border-t border-border pt-4">
+                    {item.a}
+                  </div>
+                )}
               </div>
             ))}
           </div>
