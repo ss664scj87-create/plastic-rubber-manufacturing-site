@@ -321,10 +321,11 @@ export default function ContactsSection({
       <a
         href="#contacts"
         onClick={(e) => { e.preventDefault(); document.getElementById("contacts")?.scrollIntoView({ behavior: "smooth" }); }}
-        className="fixed bottom-6 left-6 z-[90] group flex items-center gap-3 pl-4 pr-5 py-3 transition-all duration-300 hover:-translate-y-1"
+        className="fixed bottom-6 left-6 z-[90] group flex items-center gap-3 pl-4 pr-5 py-3 transition-all duration-300 hover:-translate-y-1 animate-pulse-orange"
         style={{
           background: "linear-gradient(135deg, #e85d04, #f59e0b)",
           boxShadow: "0 0 24px rgba(232,93,4,0.5), 0 4px 20px rgba(0,0,0,0.4)",
+          animation: "pulse-glow 2s ease-in-out infinite",
         }}
       >
         <span className="relative flex-shrink-0 w-9 h-9">
