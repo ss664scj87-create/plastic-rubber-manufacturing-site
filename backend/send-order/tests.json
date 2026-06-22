@@ -7,13 +7,30 @@
       "expectedStatus": 200
     },
     {
-      "name": "Send order",
+      "name": "Основная форма заявки",
       "method": "POST",
       "path": "/",
       "body": {
         "name": "Иван Петров",
         "phone": "+7 999 123 45 67",
-        "comment": "Нужно 50 резиновых прокладок диаметром 40мм"
+        "email": "test@test.ru",
+        "comment": "Тест основной формы — 50 резиновых прокладок диаметром 40мм",
+        "fileBase64": null,
+        "fileName": null
+      },
+      "expectedStatus": 200,
+      "expectedBody": {"ok": true},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Виджет обратного звонка",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Тест обратного звонка",
+        "phone": "+7 999 000 00 00",
+        "email": "",
+        "comment": "Запрос обратного звонка"
       },
       "expectedStatus": 200,
       "expectedBody": {"ok": true},
