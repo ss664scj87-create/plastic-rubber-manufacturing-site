@@ -278,7 +278,7 @@ export default function PortfolioSection({
             <div>
               <div className="tech-label mb-3 reveal opacity-0-init text-orange">// БАЗА ЗНАНИЙ</div>
               <h2 className="font-oswald text-4xl md:text-5xl reveal opacity-0-init delay-100">
-                СТАТЬИ ОБ<br />
+                СТАТЬИ О<br />
                 <span className="text-orange">ТЕХНОЛОГИЯХ</span>
               </h2>
               <p className="font-ibm text-sm text-muted-foreground mt-3 max-w-lg reveal opacity-0-init delay-200">
