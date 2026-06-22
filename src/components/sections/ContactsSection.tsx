@@ -1,3 +1,4 @@
+import { useState, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
 const PHONE = "+7 (961) 800-22-11";
@@ -30,7 +31,7 @@ interface ContactsSectionProps {
   formSent: boolean;
   setFormSent: (v: boolean) => void;
   formLoading: boolean;
-  handleSubmit: (e: React.FormEvent) => void;
+  handleSubmit: (e: React.FormEvent, file: File | null) => void;
   scrollTo: (href: string) => void;
 }
 
@@ -43,6 +44,15 @@ export default function ContactsSection({
   handleSubmit,
   scrollTo,
 }: ContactsSectionProps) {
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files?.[0];
+    if (file) setUploadedFile(file);
+  };
+
   return (
     <>
       {/* CONTACTS */}
@@ -151,7 +161,7 @@ export default function ContactsSection({
               </div>
 
               {!formSent ? (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={(e) => handleSubmit(e, uploadedFile)} className="space-y-5">
                   <div className="grid md:grid-cols-2 gap-5">
                     <div className="relative">
                       <label className="tech-label block mb-2 text-orange">ИМЯ *</label>
@@ -210,6 +220,50 @@ export default function ContactsSection({
                       onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
                       rows={4}
                       className="w-full bg-background border border-border px-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors resize-none"
+                    />
+                  </div>
+
+                  {/* Загрузка файла */}
+                  <div>
+                    <label className="tech-label block mb-2 text-orange">ЧЕРТЁЖ / ФАЙЛ</label>
+                    <div
+                      className={`border border-dashed p-4 flex items-center gap-4 cursor-pointer transition-colors ${uploadedFile ? "border-orange/60 bg-orange/5" : "border-border hover:border-orange/40"}`}
+                      onClick={() => fileInputRef.current?.click()}
+                      onDrop={handleDrop}
+                      onDragOver={(e) => e.preventDefault()}
+                    >
+                      <div className={`w-10 h-10 flex items-center justify-center flex-shrink-0 ${uploadedFile ? "bg-orange/20" : "bg-card"}`}>
+                        <Icon name={uploadedFile ? "FileCheck" : "Paperclip"} size={18} className="text-orange" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        {uploadedFile ? (
+                          <>
+                            <div className="font-ibm text-sm truncate">{uploadedFile.name}</div>
+                            <div className="font-ibm text-xs text-muted-foreground">{(uploadedFile.size / 1024).toFixed(0)} КБ</div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="font-ibm text-sm text-muted-foreground">Перетащите файл или нажмите для выбора</div>
+                            <div className="font-ibm text-xs text-muted-foreground/60">DWG, DXF, PDF, STEP, STL, JPG — до 10 МБ</div>
+                          </>
+                        )}
+                      </div>
+                      {uploadedFile && (
+                        <button
+                          type="button"
+                          onClick={(e) => { e.stopPropagation(); setUploadedFile(null); }}
+                          className="flex-shrink-0 w-7 h-7 border border-border flex items-center justify-center hover:border-orange hover:text-orange transition-colors"
+                        >
+                          <Icon name="X" size={12} />
+                        </button>
+                      )}
+                    </div>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".dwg,.dxf,.pdf,.step,.stp,.stl,.jpg,.jpeg,.png"
+                      className="hidden"
+                      onChange={(e) => { if (e.target.files?.[0]) setUploadedFile(e.target.files[0]); }}
                     />
                   </div>
 

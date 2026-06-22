@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
 import AnimatedNumber from "@/components/AnimatedNumber";
 import EngineeringDiagram from "@/components/EngineeringDiagram";
@@ -60,6 +60,26 @@ interface HeroSectionProps {
   scrollTo: (href: string) => void;
 }
 
+const ACTIVITY_ITEMS = [
+  "Новая заявка на литьё резиновых прокладок",
+  "Запрос на расчёт полиуретановых колёс",
+  "Заявка на изготовление силиконовых форм",
+  "Запрос на ЧПУ-обработку деталей",
+  "Заявка на 3D-печать прототипа",
+  "Запрос на вулканизацию РТИ",
+  "Заявка на литьё пластмасс под давлением",
+  "Запрос на изготовление пресс-форм",
+];
+
+function getRandomActivity() {
+  const item = ACTIVITY_ITEMS[Math.floor(Math.random() * ACTIVITY_ITEMS.length)];
+  const minutes = [5, 12, 23, 37, 48, 64, 91, 110, 145, 180, 210];
+  const mins = minutes[Math.floor(Math.random() * minutes.length)];
+  if (mins < 60) return { text: item, time: `${mins} мин. назад` };
+  const hrs = Math.floor(mins / 60);
+  return { text: item, time: `${hrs} ч. назад` };
+}
+
 export default function HeroSection({
   activeNav,
   mobileOpen,
@@ -70,6 +90,14 @@ export default function HeroSection({
   scrollTo,
 }: HeroSectionProps) {
   const heroRef = useRef<HTMLElement>(null);
+  const [activity, setActivity] = useState(getRandomActivity);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActivity(getRandomActivity());
+    }, 8000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <>
@@ -233,6 +261,18 @@ export default function HeroSection({
                   <div className="tech-label mt-1">{s.label}</div>
                 </div>
               ))}
+            </div>
+
+            {/* Строка активности */}
+            <div className="mt-4 flex items-center gap-3 opacity-0-init reveal delay-600">
+              <span className="relative flex-shrink-0 w-2 h-2">
+                <span className="animate-ping absolute inset-0 rounded-full bg-green-400 opacity-75" />
+                <span className="relative block w-2 h-2 rounded-full bg-green-400" />
+              </span>
+              <span className="font-ibm text-xs text-muted-foreground truncate">
+                <span className="text-green-400 font-medium">{activity.text}</span>
+                {" — "}{activity.time}
+              </span>
             </div>
           </div>
         </div>

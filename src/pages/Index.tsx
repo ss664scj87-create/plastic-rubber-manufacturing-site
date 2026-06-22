@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import HeroSection, { NAV_ITEMS } from "@/components/sections/HeroSection";
 import PortfolioSection from "@/components/sections/PortfolioSection";
 import ContactsSection from "@/components/sections/ContactsSection";
+import CallbackWidget from "@/components/CallbackWidget";
 
 const SEND_ORDER_URL =
   "https://functions.poehali.dev/85f005a0-449a-4c18-ab87-11e17bfd6b08";
@@ -108,14 +109,21 @@ export default function Index() {
     setMobileOpen(false);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent, file: File | null) => {
     e.preventDefault();
     setFormLoading(true);
     try {
+      let fileBase64 = null;
+      let fileName = null;
+      if (file) {
+        const buf = await file.arrayBuffer();
+        fileBase64 = btoa(String.fromCharCode(...new Uint8Array(buf)));
+        fileName = file.name;
+      }
       await fetch(SEND_ORDER_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, fileBase64, fileName }),
       });
     } catch (_e) {
       /* ignore */
@@ -152,6 +160,7 @@ export default function Index() {
         handleSubmit={handleSubmit}
         scrollTo={scrollTo}
       />
+      <CallbackWidget />
     </div>
   );
 }

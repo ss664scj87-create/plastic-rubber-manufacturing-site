@@ -30,13 +30,44 @@ export default function Article() {
     );
   }
 
+  const schemaJson = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.title,
+    "description": article.description,
+    "datePublished": article.date,
+    "dateModified": article.date,
+    "author": {
+      "@type": "Organization",
+      "name": "Технологическое бюро №2211",
+      "url": "https://tb2211.ru"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Технологическое бюро №2211",
+      "url": "https://tb2211.ru"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://tb2211.ru/blog/${article.slug}`
+    }
+  });
+
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* SEO */}
+      {/* SEO + микроразметка */}
       {typeof document !== "undefined" && (() => {
         document.title = `${article.title} — ТБ №2211`;
         const desc = document.querySelector('meta[name="description"]');
         if (desc) desc.setAttribute("content", article.description);
+        let schema = document.getElementById("article-schema");
+        if (!schema) {
+          schema = document.createElement("script");
+          schema.id = "article-schema";
+          (schema as HTMLScriptElement).type = "application/ld+json";
+          document.head.appendChild(schema);
+        }
+        schema.textContent = schemaJson;
         return null;
       })()}
 
