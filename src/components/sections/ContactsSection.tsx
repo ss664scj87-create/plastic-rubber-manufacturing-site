@@ -317,6 +317,30 @@ export default function ContactsSection({
         </div>
       </footer>
 
+      {/* FLOATING ЗАЯВКА BUTTON */}
+      <a
+        href="#contacts"
+        onClick={(e) => { e.preventDefault(); document.getElementById("contacts")?.scrollIntoView({ behavior: "smooth" }); }}
+        className="fixed bottom-6 left-6 z-[90] group flex items-center gap-3 pl-4 pr-5 py-3 transition-all duration-300 hover:-translate-y-1"
+        style={{
+          background: "linear-gradient(135deg, #e85d04, #f59e0b)",
+          boxShadow: "0 0 24px rgba(232,93,4,0.5), 0 4px 20px rgba(0,0,0,0.4)",
+        }}
+      >
+        <span className="relative flex-shrink-0 w-9 h-9">
+          <span className="animate-radar-ping absolute inset-0 rounded-full bg-orange-400 opacity-40" />
+          <span className="relative flex h-9 w-9 items-center justify-center bg-white/20">
+            <Icon name="ClipboardList" size={18} className="text-white" />
+          </span>
+        </span>
+        <div className="flex flex-col leading-tight">
+          <span className="font-oswald text-[10px] tracking-widest text-orange-100 uppercase">Бесплатный расчёт</span>
+          <span className="font-oswald text-base tracking-wider text-white font-semibold">Оставить заявку</span>
+        </div>
+        <span className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-white/40" />
+        <span className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-white/40" />
+      </a>
+
       {/* FLOATING MAX BUTTON */}
       <a
         href={MAX_URL}
