@@ -44,18 +44,18 @@ export default function CallbackWidget() {
       {/* Кнопка */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-[88px] left-6 z-[89] flex items-center gap-2 px-4 py-2.5 font-oswald text-sm tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5"
+        className="fixed bottom-6 left-6 z-[89] flex items-center gap-2 px-4 py-2.5 font-oswald text-sm tracking-wider transition-all duration-300 hover:-translate-y-0.5"
         style={{
-          background: "linear-gradient(135deg, #1d4ed8, #2563eb)",
-          boxShadow: "0 0 20px rgba(37,99,235,0.5), 0 4px 16px rgba(0,0,0,0.4)",
-          animation: "pulse-blue 2.5s ease-in-out infinite",
+          background: "linear-gradient(135deg, #e85d04, #f59e0b)",
+          boxShadow: "0 0 20px rgba(232,93,4,0.5), 0 4px 16px rgba(0,0,0,0.4)",
+          color: "#0d0d0d",
         }}
       >
         <span className="relative flex-shrink-0 w-5 h-5">
-          <span className="animate-ping absolute inset-0 rounded-full bg-blue-400 opacity-50" />
-          <Icon name="Phone" size={14} className="relative text-white" />
+          <span className="animate-ping absolute inset-0 rounded-full bg-orange opacity-50" />
+          <Icon name="Phone" size={14} className="relative" style={{ color: "#0d0d0d" }} />
         </span>
-        Обратный звонок
+        <span className="hidden sm:inline">Обратный звонок</span>
       </button>
 
       {/* Оверлей */}
@@ -69,7 +69,7 @@ export default function CallbackWidget() {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Оранжевая полоса */}
-            <div className="h-1 w-full" style={{ background: "linear-gradient(90deg, #1d4ed8, #2563eb)" }} />
+            <div className="h-1 w-full" style={{ background: "linear-gradient(90deg, #e85d04, #f59e0b)" }} />
 
             <div className="p-8">
               {/* Закрыть */}
@@ -83,11 +83,14 @@ export default function CallbackWidget() {
               {!sent ? (
                 <>
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg, #1d4ed8, #2563eb)" }}>
-                      <Icon name="PhoneCall" size={22} className="text-white" />
+                    <div
+                      className="w-12 h-12 flex items-center justify-center flex-shrink-0"
+                      style={{ background: "linear-gradient(135deg, #e85d04, #f59e0b)" }}
+                    >
+                      <Icon name="PhoneCall" size={22} style={{ color: "#0d0d0d" }} />
                     </div>
                     <div>
-                      <div className="tech-label text-blue-400 mb-0.5">// ОБРАТНЫЙ ЗВОНОК</div>
+                      <div className="tech-label text-orange mb-0.5">// ОБРАТНЫЙ ЗВОНОК</div>
                       <h3 className="font-oswald text-2xl">Перезвоним за 15 минут</h3>
                     </div>
                   </div>
@@ -104,7 +107,7 @@ export default function CallbackWidget() {
                         placeholder="Ваше имя"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="w-full bg-background border border-border pl-9 pr-4 py-3 font-ibm text-sm focus:border-blue-500 focus:outline-none transition-colors"
+                        className="w-full bg-background border border-border pl-9 pr-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors"
                       />
                     </div>
                     <div className="relative">
@@ -115,14 +118,14 @@ export default function CallbackWidget() {
                         placeholder="+7 (___) ___-__-__"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        className="w-full bg-background border border-border pl-9 pr-4 py-3 font-ibm text-sm focus:border-blue-500 focus:outline-none transition-colors"
+                        className="w-full bg-background border border-border pl-9 pr-4 py-3 font-ibm text-sm focus:border-orange focus:outline-none transition-colors"
                       />
                     </div>
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full flex items-center justify-center gap-2 py-3 font-oswald text-sm tracking-widest text-white disabled:opacity-60 transition-all hover:opacity-90"
-                      style={{ background: "linear-gradient(135deg, #1d4ed8, #2563eb)" }}
+                      className="w-full flex items-center justify-center gap-2 py-3 font-oswald text-sm tracking-widest disabled:opacity-60 transition-all hover:opacity-90"
+                      style={{ background: "linear-gradient(135deg, #e85d04, #f59e0b)", color: "#0d0d0d" }}
                     >
                       <Icon name={loading ? "Loader" : "PhoneCall"} size={15} />
                       {loading ? "ОТПРАВЛЯЕМ..." : "ПЕРЕЗВОНИТЕ МНЕ"}
@@ -134,8 +137,8 @@ export default function CallbackWidget() {
                 </>
               ) : (
                 <div className="text-center py-8">
-                  <div className="w-16 h-16 border-2 border-blue-500 flex items-center justify-center mx-auto mb-5">
-                    <Icon name="CheckCheck" size={30} className="text-blue-400" />
+                  <div className="w-16 h-16 border-2 border-orange flex items-center justify-center mx-auto mb-5">
+                    <Icon name="CheckCheck" size={30} className="text-orange" />
                   </div>
                   <h3 className="font-oswald text-2xl mb-2">ЗАЯВКА ПРИНЯТА</h3>
                   <p className="font-ibm text-sm text-muted-foreground mb-6">
@@ -143,7 +146,7 @@ export default function CallbackWidget() {
                   </p>
                   <button
                     onClick={handleClose}
-                    className="border border-border px-6 py-2 font-oswald text-sm tracking-wider hover:border-blue-500 hover:text-blue-400 transition-all"
+                    className="border border-border px-6 py-2 font-oswald text-sm tracking-wider hover:border-orange hover:text-orange transition-all"
                   >
                     ЗАКРЫТЬ
                   </button>

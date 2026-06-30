@@ -4,11 +4,11 @@ import Icon from "@/components/ui/icon";
 
 const CATEGORY_COLORS: Record<string, string> = {
   "Технологии": "text-orange border-orange/40 bg-orange/10",
-  "Производство": "text-blue-400 border-blue-400/40 bg-blue-400/10",
-  "Прототипирование": "text-emerald-400 border-emerald-400/40 bg-emerald-400/10",
-  "Материалы": "text-violet-400 border-violet-400/40 bg-violet-400/10",
-  "Металлообработка": "text-cyan-400 border-cyan-400/40 bg-cyan-400/10",
-  "Оснастка": "text-rose-400 border-rose-400/40 bg-rose-400/10",
+  "Производство": "text-orange border-orange/40 bg-orange/10",
+  "Прототипирование": "text-orange border-orange/40 bg-orange/10",
+  "Материалы": "text-orange border-orange/40 bg-orange/10",
+  "Металлообработка": "text-orange border-orange/40 bg-orange/10",
+  "Оснастка": "text-orange border-orange/40 bg-orange/10",
 };
 
 export default function Blog() {
