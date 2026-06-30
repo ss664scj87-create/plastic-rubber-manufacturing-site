@@ -224,7 +224,7 @@ export default function HeroSection({
               Инженерные решения полного цикла: от технического задания до серийного производства. Изготовление любой серии — от 1 штуки. Помогаем выбрать оптимальную технологию производства под вашу задачу.
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-8 opacity-0-init reveal delay-350">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-8 opacity-0-init reveal delay-350">
               <a href={`tel:${PHONE_CLEAN}`} className="flex items-center gap-2 bg-orange text-primary-foreground px-5 py-3 font-oswald text-xl tracking-wider hover:bg-orange/90 transition-all">
                 <Icon name="Phone" size={20} />
                 {PHONE}
@@ -235,7 +235,7 @@ export default function HeroSection({
               </a>
             </div>
 
-            <div className="flex gap-3 mb-10 opacity-0-init reveal delay-400">
+            <div className="flex flex-wrap gap-3 mb-10 opacity-0-init reveal delay-400">
               <a href={`https://t.me/${PHONE_CLEAN}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#229ED9] text-white px-4 py-2 font-oswald text-sm tracking-wider hover:bg-[#1a8bbf] transition-all">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.932z" />
@@ -246,7 +246,7 @@ export default function HeroSection({
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 7.5h-3v6h-3v-6h-3V7h9v2.5z" />
                 </svg>
-                Макс
+                Написать в Макс
               </a>
             </div>
 
