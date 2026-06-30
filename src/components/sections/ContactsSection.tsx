@@ -332,7 +332,7 @@ export default function ContactsSection({
               <span className="font-oswald tracking-wider">
                 ТЕХНОЛОГИЧЕСКОЕ БЮРО <span className="text-orange">№2211</span>
               </span>
-              <span className="text-muted-foreground font-ibm text-xs">© 2002–2024</span>
+              <span className="text-muted-foreground font-ibm text-xs">© 2002–2026</span>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
               {NAV_ITEMS.map(({ label, href }) => (
